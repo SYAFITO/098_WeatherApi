@@ -50,3 +50,43 @@
     <div id="tampilan"></div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    $("#getWeather").click(function () {
+      const kota = $("#lokasiInput").val().trim();
+      if (!kota) {
+        alert("Masukkan nama kota terlebih dahulu!");
+        return;
+      }
+
+      // 🔧 PERBAIKAN: format URL harus seperti ini
+      const apiKey = "33c61b567edf40e8ad511339250610"; // Ganti dengan API key milikmu jika perlu
+      const urlapi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${kota}&aqi=no`;
+
+      $.ajax({
+        url: urlapi,
+        method: "GET",
+        success: function (data) {
+          console.log(data);
+          const info = `
+            <p><b>Negara:</b> ${data.location.country}</p>
+            <p><b>Provinsi:</b> ${data.location.region}</p>
+            <p><b>Kota:</b> ${data.location.name}</p>
+            <p><b>Latitude:</b> ${data.location.lat}</p>
+            <p><b>Longitude:</b> ${data.location.lon}</p>
+            <p><b>Suhu:</b> ${data.current.temp_c} °C</p>
+            <p><b>Kelembapan:</b> ${data.current.humidity}%</p>
+            <p><b>Kondisi:</b> ${data.current.condition.text}</p>
+          `;
+          $("#tampilan").html(info);
+        },
+        error: function () {
+          $("#tampilan").html(
+            "<p style='color:red;'>Data tidak ditemukan. Coba lokasi lain.</p>"
+          );
+        },
+      });
+    });
+  </script>
+</body>
+</html>
