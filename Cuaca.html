@@ -13,4 +13,40 @@
     hr {
       border: 1px solid black;
     }
-   
+    label {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    input[type="text"] {
+      padding: 5px;
+      font-size: 16px;
+    }
+    button {
+      font-weight: bold;
+      background: black;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #333;
+    }
+    #hasil {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h2>INFO CUACA</h2>
+  <hr>
+  <label>Lokasi:</label>
+  <input type="text" id="lokasiInput" placeholder="Masukkan nama kota...">
+  <button id="getWeather">GET</button>
+  <hr>
+  <div id="hasil">
+    <b>Hasil:</b>
+    <div id="tampilan"></div>
+  </div>
+
