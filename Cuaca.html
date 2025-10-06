@@ -1,98 +1,16 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Info Cuaca</title>
+  <title>INFO CUACA</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
-    .container {
-      background: #fff;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      margin: 40px;
     }
     h2 {
-      margin-top: 0;
+      text-align: center;
     }
     hr {
-      margin: 10px 0 20px;
+      border: 1px solid black;
     }
-    label {
-      font-weight: bold;
-    }
-    input {
-      padding: 5px;
-      width: 200px;
-    }
-    button {
-      padding: 5px 10px;
-    }
-    p {
-      margin: 5px 0;
-    }
-    .value {
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>INFO CUACA</h2>
-    <hr>
-    <label for="lokasi">Lokasi :</label>
-    <input type="text" id="lokasi" placeholder="Masukkan nama kota">
-    <button onclick="getWeather()">GET</button>
-
-    <div id="hasil" style="margin-top:20px;">
-      <!-- hasil info cuaca muncul di sini -->
-    </div>
-  </div>
-
-  <script>
-    async function getWeather() {
-      const lokasi = document.getElementById("lokasi").value.trim();
-      if (!lokasi) {
-        alert("Masukkan nama lokasi terlebih dahulu!");
-        return;
-      }
-
-      const apiKey = "YOUR_API_KEY"; // Ganti dengan API key kamu dari OpenWeatherMap
-      const url = `http://api.weatherapi.com/v1/current.json?key=33c61b567edf40e8ad511339250610&q=${lokasi}&appid=${apiKey}&units=metric&lang=id`;
-
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Lokasi tidak ditemukan");
-        const data = await response.json();
-
-        // Ambil data dari API
-        const namaKota = data.name;
-        const negara = data.sys.country;
-        const suhu = data.main.temp;
-        const kelembaban = data.main.humidity;
-        const latitude = data.coord.lat;
-        const longitude = data.coord.lon;
-        const deskripsi = data.weather[0].description;
-
-        // Tampilkan hasil
-        document.getElementById("hasil").innerHTML = `
-          <p><b>Negara:</b> ${negara}</p>
-          <p><b>Kota:</b> ${namaKota}</p>
-          <p><b>Deskripsi Cuaca:</b> ${deskripsi}</p>
-          <p><b>Suhu:</b> ${suhu}°C</p>
-          <p><b>Kelembaban:</b> ${kelembaban}%</p>
-          <p><b>Latitude:</b> ${latitude}</p>
-          <p><b>Longitude:</b> ${longitude}</p>
-        `;
-      } catch (error) {
-        document.getElementById("hasil").innerHTML = `<p style="color:red;">${error.message}</p>`;
-      }
-    }
-  </script>
-</body>
-</html>
+   
